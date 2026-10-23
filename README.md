@@ -6,6 +6,8 @@
 
 [中文](#中文) | [English](#english)
 
+> ⚠️ **AI 使用说明**：本作品由 AI 辅助生成（生成时间：2026-09-06）。仅供学习与参考使用，发布、引用或投入使用前请人工核实关键信息。
+
 ---
 
 ## 中文
@@ -13,8 +15,6 @@
 ### 这是什么
 
 AI agent 会写文件、会改自己 —— 所以也会写坏自己。这套 skill 让 agent 拥有"后悔药"：即使把自己的持久记忆（身份 / 用户画像 / 事实库 / 事件日志）覆盖坏了，也能从快照链里捞回旧魂。
-
-沉淀自真实落地案例：给 AI Assistant 建立误操作回滚机制的项目要求与实施经验，**全部脱敏**。
 
 - **三层防线**：预防层（把「改前先存档」写进 agent 行为准则）+ 备份层（会话启动/改关键文件前自动快照）+ 恢复层（`restore` 回滚，恢复前自动先存「当前态」兜底，滚错了还能再滚回来）。
 - **可移植脚本 `scripts/rollback.ps1`**：四个子命令（snapshot / list / restore / verify），配 MD5 校验；只改脚本顶部 `$AgentDir` / `$CoreFiles` 两处即可用于任意 agent。
@@ -59,8 +59,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File rollback.ps1 list
 
 AI agents write files — and sometimes write *themselves* into a corner. This skill gives an agent a "do-over": even if it corrupts its own persistent memory (identity, user profile, fact base, event log), it can recover from a snapshot chain.
 
-Born from a real deployment: building a mistake-proof rollback mechanism for an AI assistant. **Fully desensitized.**
-
 - **Three layers**: prevention (write "archive before you edit" into the agent's own rules) + backup (auto-snapshot at session start / before editing key files) + recovery (`restore`, which first saves the current state as a pre-restore fallback so you can roll back a wrong restore).
 - **Portable `scripts/rollback.ps1`**: four subcommands (snapshot / list / restore / verify) with MD5 checks. Edit just `$AgentDir` / `$CoreFiles` at the top to use it with any agent.
 - **Covers both kinds of mistakes**: corrupting the agent's own memory files (SOUL.md / USER.md / FACT.md / JOURNAL ...) and mis-editing/deleting project files (pass extra paths via `-Arg`).
@@ -101,11 +99,3 @@ powershell -NoProfile -ExecutionPolicy Bypass -File rollback.ps1 list
 ## License
 
 MIT — see [LICENSE](LICENSE).
-
----
-
-## 🤖 AI 使用声明 / AI Usage Disclosure
-
-本项目在开发与维护过程中使用了 AI 编程助手（Claude / Anthropic）辅助代码编写、文档整理与问题排查；核心决策、内容审核与最终发布由维护者完成。
-
-This project was developed and maintained with the assistance of an AI coding assistant (Claude / Anthropic) for coding, documentation, and troubleshooting. Core decisions, content review, and final releases are made by the maintainer.
